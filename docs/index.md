@@ -11,9 +11,9 @@ A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → 
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="javascripts/tracker.js?v=4"></script>
+<script src="javascripts/tracker.js?v=5"></script>
 
-<p><small>Solid red line: live GPS trail. Dashed lines: planned routes (blue = Saturday, green = Sunday). Position updates every few minutes from the Garmin inReach.</small></p>
+<p><small>Solid red line: live GPS trail. Bold dashed lines: committed plan (blue = Saturday, green = Sunday). Thin grey dotted lines: options not yet decided (continuing to Eburru instead of returning to camp, the Eburru→Gilgil highway exit, and the real Fisherman's Camp→Naivasha highway distance). Position updates every few minutes from the Garmin inReach.</small></p>
 
 Fallback if the map above doesn't load: [LiveTrack on Garmin MapShare](https://share.garmin.com/3f)
 

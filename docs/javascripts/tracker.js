@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const bounds = L.latLngBounds([]);
 
-  async function loadGpxTrack(url, color, label) {
+  async function loadGpxTrack(url, label, style) {
     try {
       const res = await fetch(url);
       const text = await res.text();
@@ -20,14 +20,28 @@ document.addEventListener("DOMContentLoaded", function () {
         parseFloat(p.getAttribute("lon")),
       ]);
       if (!pts.length) return;
-      const line = L.polyline(pts, { color, weight: 6, opacity: 0.9, dashArray: "12 8", lineCap: "round" })
-        .addTo(map)
-        .bindPopup(label);
+      const line = L.polyline(pts, style).addTo(map).bindPopup(label);
       bounds.extend(line.getBounds());
     } catch (e) {
       console.error("Failed to load planned track", url, e);
     }
   }
+
+  const committedStyle = (color) => ({
+    color,
+    weight: 6,
+    opacity: 0.9,
+    dashArray: "12 8",
+    lineCap: "round",
+  });
+
+  const optionStyle = {
+    color: "#8d99ae",
+    weight: 4,
+    opacity: 0.75,
+    dashArray: "2 8",
+    lineCap: "round",
+  };
 
   const liveMarker = L.circleMarker([0, 0], {
     radius: 11,
@@ -115,8 +129,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function init() {
     await Promise.all([
-      loadGpxTrack("assets/gpx/KENYA1.gpx", "#1d3557", "Saturday: Bamboo Garden Lodge to Fisherman's Camp"),
-      loadGpxTrack("assets/gpx/KENYA2.gpx", "#2a9d8f", "Sunday: Hell's Gate loop"),
+      loadGpxTrack(
+        "assets/gpx/KENYA1.gpx",
+        "Saturday: Bamboo Garden Lodge to Fisherman's Camp",
+        committedStyle("#1d3557")
+      ),
+      loadGpxTrack("assets/gpx/KENYA2.gpx", "Sunday: Hell's Gate loop", committedStyle("#2a9d8f")),
+      loadGpxTrack(
+        "assets/gpx/KENYA3.gpx",
+        "Option: continue to Eburru Earth Camp instead of returning to camp",
+        optionStyle
+      ),
+      loadGpxTrack("assets/gpx/KENYA4.gpx", "Option: Eburru to Gilgil (Monday highway exit)", optionStyle),
+      loadGpxTrack(
+        "assets/gpx/KENYA5.gpx",
+        "Fisherman's Camp to Naivasha / A104 highway (~24 km)",
+        optionStyle
+      ),
     ]);
     await loadGarminPosition(true);
 
