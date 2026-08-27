@@ -11,7 +11,7 @@ A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → 
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="javascripts/tracker.js?v=2"></script>
+<script src="javascripts/tracker.js?v=3"></script>
 
 <p><small>Solid red line: live GPS trail. Dashed lines: planned routes (blue = Saturday, green = Sunday). Position updates every few minutes from the Garmin inReach.</small></p>
 

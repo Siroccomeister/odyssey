@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const REFRESH_MS = 3 * 60 * 1000;
 
   const map = L.map("map", { preferCanvas: true });
-  L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-    maxZoom: 17,
-    attribution: "&copy; OpenStreetMap contributors, OpenTopoMap",
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors, &copy; CARTO",
   }).addTo(map);
 
   const bounds = L.latLngBounds([]);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         parseFloat(p.getAttribute("lon")),
       ]);
       if (!pts.length) return;
-      const line = L.polyline(pts, { color, weight: 3, opacity: 0.6, dashArray: "6 6" })
+      const line = L.polyline(pts, { color, weight: 6, opacity: 0.9, dashArray: "12 8", lineCap: "round" })
         .addTo(map)
         .bindPopup(label);
       bounds.extend(line.getBounds());
@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const liveMarker = L.circleMarker([0, 0], {
-    radius: 8,
-    color: "#e63946",
+    radius: 11,
+    color: "#ffffff",
     fillColor: "#e63946",
-    fillOpacity: 0.9,
-    weight: 2,
+    fillOpacity: 1,
+    weight: 3,
   });
-  const liveTrail = L.polyline([], { color: "#e63946", weight: 4, opacity: 0.85 });
+  const liveTrail = L.polyline([], { color: "#e63946", weight: 6, opacity: 0.95, lineCap: "round" });
 
   function extendedValue(placemark, name) {
     const datas = placemark.getElementsByTagName("Data");
