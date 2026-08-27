@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const REFRESH_MS = 3 * 60 * 1000;
 
   const map = L.map("map", { preferCanvas: true });
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution: "&copy; OpenStreetMap contributors, &copy; CARTO",
+    attribution: "&copy; OpenStreetMap contributors",
   }).addTo(map);
 
   const bounds = L.latLngBounds([]);

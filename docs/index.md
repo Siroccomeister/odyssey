@@ -11,7 +11,7 @@ A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → 
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="javascripts/tracker.js?v=3"></script>
+<script src="javascripts/tracker.js?v=4"></script>
 
 <p><small>Solid red line: live GPS trail. Dashed lines: planned routes (blue = Saturday, green = Sunday). Position updates every few minutes from the Garmin inReach.</small></p>
 
@@ -23,7 +23,7 @@ Fallback if the map above doesn't load: [LiveTrack on Garmin MapShare](https://s
 |---|---|---|
 | Friday | Nairobi → Bamboo Garden Lodge (by car) | — |
 | Saturday | Bamboo Garden Lodge → Fisherman's Camp | ~61.5 km |
-| Sunday | Fisherman's Camp → Hell's Gate NP → back | ~22–30 km |
+| Sunday | Fisherman's Camp → Hell's Gate NP → Olkaria Spa → back | ~39 km |
 | Monday | Pickup near the highway, Naivasha area | — |
 
 ## Tracks
