@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   const liveTrail = L.polyline([], { color: "#e63946", weight: 4, opacity: 0.85 });
 
-  let firstLoad = true;
-
   function extendedValue(placemark, name) {
     const datas = placemark.getElementsByTagName("Data");
     for (const d of datas) {
@@ -51,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return null;
   }
 
-  async function loadGarminPosition() {
+  async function loadGarminPosition(fitView) {
     try {
       const res = await fetch(GARMIN_PROXY, { cache: "no-store" });
       const text = await res.text();
@@ -105,10 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("garmin-status").innerHTML =
         `Last update: <b>${timeStr || "unknown"}</b> — Elevation ${elevStr || "n/a"} — Speed ${velStr || "n/a"}`;
 
-      if (firstLoad) {
+      if (fitView) {
         bounds.extend(position);
-        map.fitBounds(bounds.pad(0.15));
-        firstLoad = false;
       }
     } catch (e) {
       console.error("Failed to load Garmin position", e);
@@ -117,18 +113,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  loadGpxTrack("/assets/gpx/KENYA1.gpx", "#1d3557", "Saturday: Bamboo Garden Lodge to Fisherman's Camp");
-  loadGpxTrack("/assets/gpx/KENYA2.gpx", "#2a9d8f", "Sunday: Hell's Gate loop");
+  async function init() {
+    await Promise.all([
+      loadGpxTrack("assets/gpx/KENYA1.gpx", "#1d3557", "Saturday: Bamboo Garden Lodge to Fisherman's Camp"),
+      loadGpxTrack("assets/gpx/KENYA2.gpx", "#2a9d8f", "Sunday: Hell's Gate loop"),
+    ]);
+    await loadGarminPosition(true);
 
-  loadGarminPosition();
-  setInterval(loadGarminPosition, REFRESH_MS);
-
-  setTimeout(() => {
-    if (firstLoad && bounds.isValid()) {
+    if (bounds.isValid()) {
       map.fitBounds(bounds.pad(0.15));
-      firstLoad = false;
-    } else if (firstLoad) {
+    } else {
       map.setView([-0.9, 36.4], 10);
     }
-  }, 2000);
+
+    setInterval(() => loadGarminPosition(false), REFRESH_MS);
+  }
+
+  init();
 });
