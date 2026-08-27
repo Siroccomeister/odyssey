@@ -4,9 +4,18 @@ A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → 
 
 ## Live position
 
-<iframe src="https://share.garmin.com/3f" width="100%" height="600" frameborder="0" style="border-radius: 8px;"></iframe>
+<p id="garmin-status"><i>Loading last known position…</i></p>
 
-If the map above looks empty or stale, the tracker may be between check-ins — it updates periodically, not continuously.
+<style> #map { width: auto; height: 500px; margin: 0; border-radius: 8px; } </style>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="javascripts/tracker.js"></script>
+
+<p><small>Solid red line: live GPS trail. Dashed lines: planned routes (blue = Saturday, green = Sunday). Position updates every few minutes from the Garmin inReach.</small></p>
+
+Fallback if the map above doesn't load: [LiveTrack on Garmin MapShare](https://share.garmin.com/3f)
 
 ## Plan
 
