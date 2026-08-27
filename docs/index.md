@@ -29,4 +29,4 @@ Fallback if the map above doesn't load: [LiveTrack on Garmin MapShare](https://s
 ## Tracks
 
 - [Saturday: Bamboo Garden Lodge → Fisherman's Camp](https://ridewithgps.com/routes/56882839)
-- [Sunday: Hell's Gate — Elsa Gate to Olkaria Spa loop](https://ridewithgps.com/routes/56882840)
+- [Sunday: Fisherman's Camp — Hell's Gate — Olkaria Spa loop](https://ridewithgps.com/routes/56883443)
