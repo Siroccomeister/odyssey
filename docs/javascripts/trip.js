@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function fitToKeys(keys) {
+  const NAIROBI = [36.8172, -1.2864];
+
+  function fitToKeys(keys, extraPoint) {
     let bounds = null;
     keys.forEach((k) => {
       trackData[k].coords.forEach((c) => {
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         else bounds.extend(c);
       });
     });
+    if (extraPoint && bounds) bounds.extend(extraPoint);
     if (bounds) map.fitBounds(bounds, { padding: 40, duration: 500 });
   }
 
@@ -253,6 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
     else lightbox = GLightbox({ selector: ".glightbox" });
   }
 
+  let isInitialLoad = true;
+
   async function selectDay(key) {
     document.querySelectorAll(".trip-tab").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.day === key);
@@ -262,7 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const keys = DAYS.map((d) => d.key);
       setTracksVisible(keys);
       setPhotoLayersVisible(keys);
-      fitToKeys(keys);
+      fitToKeys(keys, isInitialLoad ? NAIROBI : null);
+      isInitialLoad = false;
 
       const totalDist = DAYS.reduce((s, d) => s + trackData[d.key].distance_km, 0);
       const totalGain = DAYS.reduce((s, d) => s + trackData[d.key].elevation_gain_m, 0);
@@ -280,6 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const allPhotos = DAYS.flatMap((d) => photosByDay[d.key] || []);
       renderPhotoStrip(allPhotos, ALL_KEY);
     } else {
+      isInitialLoad = false;
       setTracksVisible([key]);
       setPhotoLayersVisible([key]);
       fitToKeys([key]);
