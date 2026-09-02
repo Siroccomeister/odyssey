@@ -1,6 +1,8 @@
 # Kenya Bike Odyssey - testride August 2026
 
-A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → Fisherman's Camp (Lake Naivasha) → Hell's Gate National Park → Eburru → Gilgil.
+*Route from [Bikepacking.com](https://bikepacking.com/routes/kenya-bike-odyssey/)*
+
+A solo gravel weekend on part of the [Trans-Kenya route](https://bikepacking.com/routes/kenya-bike-odyssey/): Bamboo Garden Lodge → Fisherman's Camp (Lake Naivasha) → Hell's Gate National Park → Eburru → Gilgil.
 
 ## The ride
 
