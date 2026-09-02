@@ -35,7 +35,7 @@ A solo gravel weekend on part of the Trans-Kenya route: Bamboo Garden Lodge → 
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
-<script src="javascripts/trip.js?v=8"></script>
+<script src="javascripts/trip.js?v=9"></script>
 
 <p><small>Tracks are the actual recorded GPS traces from the ride (via Garmin → RideWithGPS), not the planned route. Hover the elevation chart to see the matching point on the map.</small></p>
 

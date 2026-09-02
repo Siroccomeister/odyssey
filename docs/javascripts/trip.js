@@ -184,6 +184,15 @@ document.addEventListener("DOMContentLoaded", function () {
         })),
       },
     });
+    // Invisible, larger hit-area layer — the visible dot is only 6px, well under a
+    // usable touch target, so taps are bound to this bigger transparent layer instead.
+    map.addLayer({
+      id: "photo-hitarea-" + day.key,
+      type: "circle",
+      source: sourceId,
+      layout: { visibility: "none" },
+      paint: { "circle-radius": 18, "circle-color": "#000000", "circle-opacity": 0 },
+    });
     map.addLayer({
       id: "photo-layer-" + day.key,
       type: "circle",
@@ -196,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "circle-stroke-width": 2,
       },
     });
-    map.on("click", "photo-layer-" + day.key, (e) => {
+    map.on("click", "photo-hitarea-" + day.key, (e) => {
       const f = e.features[0];
       new mapboxgl.Popup({ className: "trip-popup" })
         .setLngLat(f.geometry.coordinates)
@@ -205,12 +214,16 @@ document.addEventListener("DOMContentLoaded", function () {
         )
         .addTo(map);
     });
+    map.on("mouseenter", "photo-hitarea-" + day.key, () => (map.getCanvas().style.cursor = "pointer"));
+    map.on("mouseleave", "photo-hitarea-" + day.key, () => (map.getCanvas().style.cursor = ""));
   }
 
   function setPhotoLayersVisible(keys) {
     DAYS.forEach((d) => {
       if (map.getLayer("photo-layer-" + d.key)) {
-        map.setLayoutProperty("photo-layer-" + d.key, "visibility", keys.includes(d.key) ? "visible" : "none");
+        const vis = keys.includes(d.key) ? "visible" : "none";
+        map.setLayoutProperty("photo-layer-" + d.key, "visibility", vis);
+        map.setLayoutProperty("photo-hitarea-" + d.key, "visibility", vis);
       }
     });
   }
