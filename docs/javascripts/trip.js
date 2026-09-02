@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  mapboxgl.accessToken = "pk.eyJ1IjoiZmFuYXRpYzgiLCJhIjoiY204cGt2NXYxMGNtczJtc2FvYmEzY2dwYyJ9.TAWriXunFQTETsyR0MNxYQ";
+  mapboxgl.accessToken = "pk.eyJ1IjoiZmFuYXRpYzgiLCJhIjoiY210azFsbXpnMGVuNDMxcjJ2enhmaXl3aCJ9.ePvQndPXFjWEhf7MbaAk7A";
 
   const DAYS = [
     { key: "saturday", label: "Saturday", color: "#1d3557", file: "assets/tracks/saturday.json" },
