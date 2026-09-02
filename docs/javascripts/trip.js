@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function renderPhotoStrip(photos) {
+  function renderPhotoStrip(photos, galleryId) {
     const container = document.getElementById("photo-strip");
 
     if (!photos.length) {
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .map(
         (p) => `
       <figure class="trip-photo">
-        <a href="assets/photos/${p.thumb}" class="glightbox" data-gallery="${p.day}" data-description="${p.caption || ""}">
+        <a href="assets/photos/${p.thumb}" class="glightbox" data-gallery="${galleryId}" data-description="${p.caption || ""}">
           <img src="assets/photos/${p.thumb}" loading="lazy" alt="${p.caption || ""}">
         </a>
         ${p.caption ? `<figcaption>${p.caption}</figcaption>` : ""}
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
       drawCombinedChart();
 
       const allPhotos = DAYS.flatMap((d) => photosByDay[d.key] || []);
-      renderPhotoStrip(allPhotos);
+      renderPhotoStrip(allPhotos, ALL_KEY);
     } else {
       setTracksVisible([key]);
       setPhotoLayersVisible([key]);
@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       drawSingleDayChart(data);
-      renderPhotoStrip(photosByDay[key] || []);
+      renderPhotoStrip(photosByDay[key] || [], key);
     }
   }
 
